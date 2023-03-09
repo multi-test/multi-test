@@ -1,0 +1,39 @@
+{
+  "name": "@multi-test/state",
+  "version": "1.0.0",
+  "description": "Byte state management of test state",
+  "author": "Yaroslav Serhieiev <noomorph@gmail.com>",
+  "license": "GPL-3.0",
+  "bugs": {
+    "url": "https://github.com/multi-test/multi-test/issues"
+  },
+  "homepage": "https://github.com/multi-test/multi-test#readme",
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:multi-test/multi-test.git",
+    "directory": "packages/multi-test-state"
+  },
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "test": "jest"
+  },
+  "dependencies": {
+    "bit-buffer": "^0.2.5"
+  },
+  "devDependencies": {
+    "@types/jest": "^29.4.0",
+    "@types/lodash": "^4.14.116",
+    "@types/node": "^18.14.6",
+    "lodash": "^4.17.10",
+    "ts-jest": "^29.0.5",
+    "typescript": "^4.9.5"
+  },
+  "jest": {
+    "preset": "ts-jest",
+    "testEnvironment": "node",
+    "testMatch": [
+      "**/*.test.ts"
+    ]
+  }
+}
