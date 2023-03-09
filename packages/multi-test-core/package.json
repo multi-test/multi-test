@@ -1,0 +1,59 @@
+{
+  "name": "@multi-test/core",
+  "version": "1.0.0",
+  "description": "Collection of pure functions for calculating results of psychological tests",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "exports": {
+    ".": "./dist/index.js",
+    "./alexithymia": "./dist/alexithymia/alexithymia.js",
+    "./amon": "./dist/amon/amon.js",
+    "./cattell": "./dist/cattell/cattell.js",
+    "./emin": "./dist/emin/emin.js",
+    "./factor5": "./dist/factor5/factor5.js",
+    "./lsi": "./dist/lsi/lsi.js",
+    "./maddi": "./dist/maddi/maddi.js",
+    "./mendel": "./dist/mendel/mendel.js",
+    "./mmpi": "./dist/mmpi/mmpi.js",
+    "./spa": "./dist/spa/spa.js",
+    "./usk": "./dist/usk/usk.js"
+  },
+  "files": [
+    "dist",
+    "src",
+    "!**/*.spec.*",
+    "!**/__*__"
+  ],
+  "scripts": {
+    "prepare": ":",
+    "lint": ":",
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/multi-test/multi-test-core.git"
+  },
+  "author": "Yaroslav Serhieiev <noomorph@gmail.com>",
+  "license": "GPL-3.0",
+  "bugs": {
+    "url": "https://github.com/multi-test/multi-test-core/issues"
+  },
+  "homepage": "https://github.com/multi-test/multi-test-core#readme",
+  "devDependencies": {
+    "@types/jest": "^29.4.0",
+    "lodash": "^4.17.21",
+    "ts-jest": "^29.0.0",
+    "typescript": "^4.9.5",
+    "tslib": "^2.5.0"
+  },
+  "peerDependencies": {
+    "tslib": "^2.5.0"
+  },
+  "jest": {
+    "preset": "ts-jest",
+    "testEnvironment": "node",
+    "testMatch": [
+      "**/*.spec.ts"
+    ]
+  }
+}

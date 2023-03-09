@@ -1,0 +1,23 @@
+{
+  "name": "@multi-test/monorepo",
+  "private": true,
+  "scripts": {
+    "test": ":"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:multi-test/multi-test.git"
+  },
+  "author": "Yaroslav Serhieiev <noomorph@gmail.com>",
+  "license": "GPL-3.0",
+  "bugs": {
+    "url": "https://github.com/multi-test/multi-test/issues"
+  },
+  "homepage": "https://github.com/multi-test/multi-test",
+  "devDependencies": {
+    "lerna": "^6.5.1"
+  },
+  "workspaces": [
+    "packages/*"
+  ]
+}
