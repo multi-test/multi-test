@@ -2,10 +2,22 @@
   "name": "@multi-test/core",
   "version": "1.0.0",
   "description": "Collection of pure functions for calculating results of psychological tests",
+  "author": "Yaroslav Serhieiev <noomorph@gmail.com>",
+  "license": "GPL-3.0",
+  "bugs": {
+    "url": "https://github.com/multi-test/multi-test/issues"
+  },
+  "homepage": "https://github.com/multi-test/multi-test#readme",
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:multi-test/multi-test.git",
+    "directory": "packages/multi-test-core"
+  },
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "exports": {
     ".": "./dist/index.js",
+    "./adaptivity": "./dist/adaptivity/adaptivity.js",
     "./alexithymia": "./dist/alexithymia/alexithymia.js",
     "./amon": "./dist/amon/amon.js",
     "./cattell": "./dist/cattell/cattell.js",
@@ -29,17 +41,8 @@
     "lint": ":",
     "test": "jest"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/multi-test/multi-test-core.git"
-  },
-  "author": "Yaroslav Serhieiev <noomorph@gmail.com>",
-  "license": "GPL-3.0",
-  "bugs": {
-    "url": "https://github.com/multi-test/multi-test-core/issues"
-  },
-  "homepage": "https://github.com/multi-test/multi-test-core#readme",
   "devDependencies": {
+    "@types/lodash": "^4.14.191",
     "@types/jest": "^29.4.0",
     "lodash": "^4.17.21",
     "ts-jest": "^29.0.0",

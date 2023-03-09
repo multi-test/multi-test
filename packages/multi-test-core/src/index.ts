@@ -1,3 +1,4 @@
+export { default as adaptivity } from "./adaptivity/adaptivity";
 export { default as alexithymia } from "./alexithymia/alexithymia";
 export { default as amon } from "./amon/amon";
 export { default as cattell } from "./cattell/cattell";
