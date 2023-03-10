@@ -1,0 +1,141 @@
+@import './reset.css';
+
+html {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  width: 100%;
+}
+
+body {
+  background-image: url('assets/paper.jpg');
+  background-attachment: fixed;
+  font: 16px Georgia, serif;
+  margin: 2em auto 0;
+  padding: 0 auto 1em;
+  position: relative;
+  width: 60%;
+}
+
+.loading { display: none; }
+
+.clearfix:after {
+  clear: both;
+  content: '';
+  display: block;
+}
+
+strong {
+  font-weight: bold;
+}
+
+pre {
+  margin: 0;
+}
+
+p {
+  font-size: 200%;
+}
+
+input {
+  font-size: 100%;
+  font-weight: lighter;
+  text-align: center;
+}
+
+input[type='text']:focus,
+input[type='number']:focus {
+  background-color: #fff0ee;
+}
+
+th,
+td {
+  text-align: left;
+}
+
+button {
+  padding: 10px;
+  font-size: 100%;
+}
+
+h1 {
+  margin: 0 0 0.1875em 0;
+  font-size: 1.875em;
+  color: #333;
+  text-align: center;
+}
+
+h2 {
+  margin: 0 0 2em 0;
+  font-size: 0.75em;
+  font-style: italic;
+  color: gray;
+  text-align: right;
+}
+
+h3 {
+  margin: 1em 0 0 0;
+  text-align: left;
+  line-height: 100%;
+  font-weight: bold;
+}
+
+h4 {
+  color: #444;
+  font-family: Georgia, serif;
+  font-style: italic;
+  font-size: 150%;
+  padding-left: 0.5em;
+  padding-bottom: 0.3em;
+  border-bottom: solid 1px silver;
+}
+
+h4 span { color: #446; }
+
+.screen {
+  padding-bottom: 1em;
+}
+
+@media only screen and (max-width: 768px) {
+  html {
+    background: none;
+  }
+
+  body {
+    padding: 1em 5%;
+    margin: 0;
+    width: 90%;
+  }
+
+  h2 {
+    font-size: 0.625em !important;
+  }
+}
+
+@media print {
+  body {
+    box-sizing: border-box;
+    width: 100%;
+    height: auto;
+    margin: 0 auto;
+    padding: 0 1em;
+    font-size: 14px;
+    font-family: 'Times New Roman', Times, serif;
+  }
+
+  h1 {
+    font-size: 1.25em;
+    font-weight: bold;
+  }
+
+  h2 {
+    font-size: 0.875em;
+    color: black;
+    font-style: normal;
+    margin: 0.75em 0 2px;
+  }
+
+  .screen {
+    padding-bottom: 0;
+  }
+}

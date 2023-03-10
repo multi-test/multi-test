@@ -1,0 +1,57 @@
+.SurveyForm h4 a {
+  font-style: normal;
+  font-weight: bold;
+  text-decoration: none;
+}
+
+.SurveyForm .frame {
+  height: 12em;
+  overflow: hidden;
+  position: relative;
+}
+
+/*
+.SurveyForm .ribbon {
+  position: absolute;
+  top: 0;
+  transition: all 0.25s ease;
+}
+
+.SurveyForm .card {
+  float: left;
+  overflow: hidden;
+  position: relative;
+}
+*/
+
+.SurveyForm .hidden {
+  visibility: hidden;
+}
+
+.SurveyForm .card div {
+  padding: 0.5em 0 0 0.5em;
+}
+
+.SurveyForm .card span {
+  font-size: 150%;
+}
+
+.SurveyForm .card span.answer {
+  padding-left: 0.2em;
+  color: navy;
+  font-style: italic;
+}
+
+.SurveyForm button {
+  border: solid 2px;
+  cursor: pointer;
+  float: left;
+  font-family: sans-serif;
+  margin-left: 5%;
+  transition: opacity .25s linear;
+  width: 40%;
+}
+
+.SurveyForm button[disabled] {
+  opacity: 0.5;
+}

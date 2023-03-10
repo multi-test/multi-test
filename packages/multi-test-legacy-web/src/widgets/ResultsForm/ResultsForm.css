@@ -1,0 +1,58 @@
+.ResultsForm table,
+.ResultsForm tr,
+.ResultsForm td,
+.ResultsForm th {
+  border: none;
+}
+
+.ResultsForm td,
+.ResultsForm th {
+  padding: 0.5em;
+}
+
+.ResultsForm .topped {
+  vertical-align: top;
+}
+
+.ResultsForm .w8 {
+  width: 8em;
+}
+
+.ResultsForm .w8:after {
+  content: ':';
+}
+
+.ResultsForm .under-border,
+.ResultsForm .under-border {
+  border-bottom: 1px solid #000;
+}
+
+.ResultsForm .bordered th,
+.ResultsForm .bordered td {
+  border: 1px solid #000;
+}
+
+.ResultsForm .wide {
+  width: 100%;
+}
+
+@media print {
+  .ResultsForm table {
+    margin-top: 0.5em;
+    margin-bottom: 0;
+  }
+
+  .ResultsForm td,
+  .ResultsForm th {
+    padding: 1px 0.25em;
+  }
+
+  .ResultsForm .bordered th {
+    text-align: center;
+    padding-right: 0.25em;
+  }
+
+  .ResultsForm #contact {
+    width: 80%;
+  }
+}
