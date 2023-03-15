@@ -4,6 +4,7 @@ export { default as amon } from "./amon/amon";
 export { default as cattell } from "./cattell/cattell";
 export { default as emin } from "./emin/emin";
 export { default as factor5 } from "./factor5/factor5";
+export { default as maddi } from "./maddi/maddi";
 export { default as mendel } from "./mendel/mendel";
 export { default as mmpi } from "./mmpi/mmpi";
 export { default as spa } from "./spa/spa";

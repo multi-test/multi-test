@@ -16,10 +16,11 @@ templateConfig.config.module.loaders.push({
 
 var entry = {
     'Alexithymia-RU': ['./containers/Alexithymia-RU'],
-    'Cattell-RU': ['./containers/Cattell-RU'],
-    'Factor5-RU': ['./containers/Factor5-RU'],
     'Amon-RU': ['./containers/Amon-RU'],
+    'Cattell-RU': ['./containers/Cattell-RU'],
     'Emin-RU': ['./containers/Emin-RU'],
+    'Factor5-RU': ['./containers/Factor5-RU'],
+    'Maddi-RU': ['./containers/Maddi-RU'],
     'SPA-RU': ['./containers/SPA-RU'],
 };
 

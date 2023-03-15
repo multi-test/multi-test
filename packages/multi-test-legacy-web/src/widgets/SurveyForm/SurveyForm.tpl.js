@@ -2,7 +2,7 @@ import i18n from 'util/i18n';
 import { linebreak } from 'util/softbreak';
 
 function renderQuestion(metaData, index, answer) {
-    const answerHtml = answer !== undefined && metaData.getAnswer(answer, index) || '';
+    const answerHtml = answer !== undefined && metaData.getAnswer(answer) || '';
 
     return `
       <div class="card">
@@ -32,7 +32,7 @@ function renderForward(answer, link) {
 
 function renderAnswersSection(metaData, index) {
     return metaData.answers.map(answer => Object.assign({}, answer, {
-        text: metaData.getAnswer(answer.value, index),
+        text: metaData.getAnswer(answer.value),
     })).map(renderAnswer).join('');
 }
 

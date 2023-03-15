@@ -30,8 +30,9 @@ function renderAnswers(answers, extra) {
     `;
 }
 
-function renderScale({ id, text, result: { value, t } }) {
-    const td3 = this.hasT ? `<td>${t}</td>` : '';
+function renderScale({ id, text, result }) {
+    const value = result.value !== undefined ? result.value : '';
+    const td3 = this.hasT ? `<td>${result.t}</td>` : '';
 
     return `
       <tr>
