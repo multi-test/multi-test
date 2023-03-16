@@ -31,7 +31,7 @@ function renderAnswers(answers, extra) {
 }
 
 function renderScale({ id, text, result }) {
-    const value = result.value !== undefined ? result.value : '';
+    const value = result.value !== undefined ? result.value : result;
     const td3 = this.hasT ? `<td>${result.t}</td>` : '';
 
     return `
@@ -95,7 +95,7 @@ export default ({
       <table class="wide">
         <tr>
           <td class="topped clearfix">
-            ${chunk(answers, Math.min(38, answers.length / 2))
+            ${chunk(answers, Math.min(38, Math.ceil(answers.length / 2)))
         .reduce(({ offset, html }, value) => ({
             offset: offset + value.length,
             html: html + renderAnswers(value, { offset, metaData }),

@@ -17,8 +17,8 @@ export default class ResultsForm {
         const { id, user } = this;
         const { metaData, answers } = this.survey;
         const results = this.survey.calculate(user);
-        const scales = results[0].result ? results : metaData.scales.map(scale => ({
-            id: scale.id,
+        const scales = (results[0] && results[0].result) ? results : metaData.scales.map(scale => ({
+            id: scale.displayId || scale.id,
             text: scale.text,
             result: results[scale.id],
         }));

@@ -21,6 +21,14 @@ const META = buildMetaData({
     ],
 });
 
+Object.values(META.scales).forEach((scale) => {
+  Object.defineProperty(scale, 'displayId', {
+    get() {
+      return scale.text;
+    },
+  })
+});
+
 export default class Maddi {
     constructor() {
         this.answers = new Array(META.questionsCount);
