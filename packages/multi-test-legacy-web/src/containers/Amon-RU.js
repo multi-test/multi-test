@@ -7,4 +7,5 @@ main({
     lang: 'ru',
     translations: [...translations, ru],
     Survey: Amon,
+    title: ru.Amon.name,
 });

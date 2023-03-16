@@ -3,6 +3,8 @@
   min-height: 4.5em;
   margin-left: 2%;
   font-size: 0.75em;
+  color: #000;
+  touch-action: manipulation;
 }
 
 .SurveyForm .b0 { background-color: #17516c; color: white; border-color: black; }

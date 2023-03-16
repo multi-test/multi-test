@@ -7,4 +7,5 @@ main({
     lang: 'ru',
     translations: [...translations, ru],
     Survey: Cattell,
+    title: ru.Cattell.name,
 });

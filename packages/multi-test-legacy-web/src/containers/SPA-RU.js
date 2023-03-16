@@ -7,4 +7,5 @@ main({
     lang: 'ru',
     translations: [...translations, ru],
     Survey: SPA,
+    title: ru.SPA.name,
 });
