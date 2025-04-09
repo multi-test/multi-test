@@ -2,8 +2,11 @@
   "name": "@multi-test/monorepo",
   "private": true,
   "scripts": {
-    "postinstall": "lerna bootstrap",
-    "test": ":"
+    "test": ":",
+    "build": "yarn workspaces foreach run build",
+    "clean": "yarn workspaces foreach run clean",
+    "lint": "yarn workspaces foreach run lint",
+    "test:all": "yarn workspaces foreach run test"
   },
   "repository": {
     "type": "git",
@@ -15,9 +18,7 @@
     "url": "https://github.com/multi-test/multi-test/issues"
   },
   "homepage": "https://github.com/multi-test/multi-test",
-  "devDependencies": {
-    "lerna": "^6.5.1"
-  },
+  "packageManager": "yarn@4.8.1",
   "workspaces": [
     "packages/*"
   ]
