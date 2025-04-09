@@ -1,4 +1,4 @@
-import {CattellState, FinalCattellState} from "./type";
+import {CattellState} from "./type";
 
 export function validateIntermediateCattellState(state: CattellState): boolean {
     if (state == null) {
@@ -143,36 +143,6 @@ function validateName(name: any): name is string {
     }
 
     if (name.length > 70) {
-        return false;
-    }
-
-    return true;
-}
-
-export function validateFinalCattellState(state: CattellState): state is FinalCattellState {
-    if (!validateIntermediateCattellState(state)) {
-        return false;
-    }
-
-    if (state.position !== 189) {
-        return false;
-    }
-
-    for (const answer of state.answers) {
-        if (answer === '') {
-            return false;
-        }
-    }
-
-    if (state.profile.gender === '') {
-        return false;
-    }
-
-    if (state.profile.age === 0) {
-        return false;
-    }
-
-    if (state.profile.name === '') {
         return false;
     }
 

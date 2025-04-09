@@ -11,13 +11,3 @@ export type CattellState = {
         name: string;
     };
 };
-
-export type FinalCattellState = {
-    position: number;
-    answers: CattelAnswer[];
-    profile: {
-        gender: Gender;
-        age: number;
-        name: string;
-    };
-};

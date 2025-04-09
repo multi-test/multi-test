@@ -1,4 +1,4 @@
-import { validateIntermediateCattellState, validateFinalCattellState } from '../validate';
+import { validateIntermediateCattellState } from '../validate';
 import createBlankCattellState from "../blank";
 import {CattellState} from "../type";
 
@@ -276,68 +276,6 @@ describe('cattell.state.validate', () => {
                         age: 71,
                     },
                 })).toBe(false));
-        });
-    });
-
-    describe('validateFinalCattellState', () => {
-        let state: CattellState;
-
-        beforeEach(() => {
-            state = {
-                position: 189,
-                answers: new Array(187).fill('A'),
-                profile: {
-                    gender: 'F',
-                    age: 16,
-                    name: 'A',
-                },
-            };
-        });
-
-        it('should consider completed Cattell state valid', () => {
-            expect(validateFinalCattellState(state)).toBe(true);
-        });
-
-        it('should consider a state with last answer left blank invalid', () => {
-            state.answers[186] = '';
-
-            expect(validateFinalCattellState(state)).toBe(false);
-            expect(validateIntermediateCattellState(state)).toBe(true);
-        });
-
-        it('should consider a state with missing gender invalid', () => {
-            state.profile.gender = '';
-
-            expect(validateFinalCattellState(state)).toBe(false);
-            expect(validateIntermediateCattellState(state)).toBe(true);
-        });
-
-        it('should consider a state with missing age invalid', () => {
-            state.profile.age = 0;
-
-            expect(validateFinalCattellState(state)).toBe(false);
-            expect(validateIntermediateCattellState(state)).toBe(true);
-        });
-
-        it('should consider a state with missing name invalid', () => {
-            state.profile.name = '';
-
-            expect(validateFinalCattellState(state)).toBe(false);
-            expect(validateIntermediateCattellState(state)).toBe(true);
-        });
-
-        it('should consider blank cattell state invalid', () => {
-            expect(validateFinalCattellState(createBlankCattellState())).toBe(false);
-        });
-
-        it('should consider any invalid cattell state also invalid', () => {
-            const invalidStates: CattellState[] = examples
-                .filter(([_, valid]) => !valid)
-                .map(([state]) => state);
-
-            invalidStates.forEach(state => {
-                expect(validateFinalCattellState(state)).toBe(false);
-            });
         });
     });
 });
