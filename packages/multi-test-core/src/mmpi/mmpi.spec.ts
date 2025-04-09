@@ -1,68 +1,70 @@
 import mmpi from "./mmpi";
 import {createBlankScales} from "./scales";
-import {should_equal, when_filled_with as wfw} from "../__utils__/helpers";
-
-const when_filled_with = wfw(mmpi, 71);
 
 describe(mmpi.name, () => {
-  when_filled_with(undefined, createBlankScales(NaN));
+  // Test cases for uniform arrays
+  test.each([
+    ['undefined', undefined, createBlankScales(NaN)],
+    ['1', 1, createBlankScales(NaN)],
+    ['+', '+', {
+      "1": 9,
+      "2": 8,
+      "3": 14,
+      "4": 11,
+      "6": 10,
+      "7": 13,
+      "8": 17,
+      "9": 11,
+      "F": 9,
+      "K": 0,
+      "L": 0,
+      "T1": 55,
+      "T2": 52,
+      "T3": 65,
+      "T4": 55,
+      "T6": 86,
+      "T7": 45,
+      "T8": 62,
+      "T9": 75,
+      "TF": 78,
+      "TK": 24,
+      "TL": 35,
+    }],
+    ['-', '-', {
+      "1": 12,
+      "2": 11,
+      "3": 11,
+      "4": 14,
+      "6": 4,
+      "7": 17,
+      "8": 16,
+      "9": 4,
+      "L": 5,
+      "F": 3,
+      "K": 14,
+      "T1": 65,
+      "T2": 62,
+      "T3": 55,
+      "T4": 72,
+      "T6": 48,
+      "T7": 62,
+      "T8": 58,
+      "T9": 36,
+      "TL": 78,
+      "TF": 48,
+      "TK": 68,
+    }]
+  ])('when filled with %s', (_, value, expected) => {
+    // Create an array of length 71 filled with the test value
+    const answers = value !== undefined ? Array(71).fill(value) : new Array(71);
 
-  when_filled_with(1, createBlankScales(NaN));
-
-  when_filled_with("+", {
-    "1": 9,
-    "2": 8,
-    "3": 14,
-    "4": 11,
-    "6": 10,
-    "7": 13,
-    "8": 17,
-    "9": 11,
-    "F": 9,
-    "K": 0,
-    "L": 0,
-    "T1": 55,
-    "T2": 52,
-    "T3": 65,
-    "T4": 55,
-    "T6": 86,
-    "T7": 45,
-    "T8": 62,
-    "T9": 75,
-    "TF": 78,
-    "TK": 24,
-    "TL": 35,
+    // Verify the expected result
+    expect(mmpi(answers)).toEqual(expected);
   });
 
-  when_filled_with("-", {
-    "1": 12,
-    "2": 11,
-    "3": 11,
-    "4": 14,
-    "6": 4,
-    "7": 17,
-    "8": 16,
-    "9": 4,
-    "L": 5,
-    "F": 3,
-    "K": 14,
-    "T1": 65,
-    "T2": 62,
-    "T3": 55,
-    "T4": 72,
-    "T6": 48,
-    "T7": 62,
-    "T8": 58,
-    "T9": 36,
-    "TL": 78,
-    "TF": 48,
-    "TK": 68,
-  });
-
-  describe("given a sample suite #1", () => {
-    let answers;
-
-    beforeEach(() => answers = [
+  // Test for specific answer pattern
+  test('given a sample suite #1', () => {
+    const answers = [
       "+", "+", "+",
       "+", "-", "+",
       "-", "-", "-",
@@ -87,7 +89,7 @@ describe(mmpi.name, () => {
       "+", "+", "+",
       "+", "+", "+",
       "-", "-",
-    ]);
+    ];
 
     const expected = {
       "1": 3,
@@ -114,8 +116,6 @@ describe(mmpi.name, () => {
       "TK": 42,
     };
 
-    it(should_equal(expected), () => {
-      expect(mmpi(answers)).toEqual(expected);
-    });
+    expect(mmpi(answers)).toEqual(expected);
   });
 });

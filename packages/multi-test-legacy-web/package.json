@@ -13,9 +13,9 @@
     "deploy": "./.gh-pages.sh dist"
   },
   "dependencies": {
+    "@multi-test/core": "^1.0.0",
     "gator": "^1.2.4",
     "lodash": "^4.17.0",
-    "@multi-test/core": "^1.0.0",
     "translate.js": "^0.2.0",
     "tslib": "^1.9.3"
   },
