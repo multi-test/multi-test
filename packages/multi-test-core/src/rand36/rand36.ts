@@ -113,7 +113,7 @@ const calculateScales = (recodedValues: Record<number, number>): IRAND36Scales =
         
         // Set scale value to the average (0-100 range)
         // Only calculate average when we have at least one valid value
-        scales[scale as keyof IRAND36Scales] = count > 0 ? sum / count : NaN;
+        scales[scale as keyof IRAND36Scales] = count > 0 ? Math.round(sum / count) : NaN;
     });
     
     return scales;
@@ -171,7 +171,11 @@ function zScore([scale, value]: [string, number]): [string, number] {
   }
   const mean = stats[scale][2];
   const sd = stats[scale][3];
-  return [scale, (value - mean) / sd];
+  return [scale, precision((value - mean) / sd)];
+}
+
+function precision(value: number, digits: number = 2): number {
+  return Math.round(value * Math.pow(10, digits)) / Math.pow(10, digits);
 }
 
 /**
@@ -185,7 +189,7 @@ function tScore([scale, value]: [string, number]): [string, number] {
   const mean = stats[scale][2];
   const sd = stats[scale][3];
   const z = (value - mean) / sd;
-  return [scale, 50 + (10 * z)];
+  return [scale, Math.round(50 + (10 * z))];
 }
 
 /**

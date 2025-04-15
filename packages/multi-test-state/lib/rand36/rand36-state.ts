@@ -4,6 +4,7 @@ import {decodeState} from "./state/decode";
 import {encodeState} from "./state/encode";
 import {validate} from "./state/validate";
 import {Blank, RAND36Answer, RAND36State} from "./state/type";
+import {encode as koi8encode } from "../utils/koi8-u";
 
 export default class RAND36StateWrapper implements RAND36State {
   constructor(private readonly _state = createBlankRAND36State()) {}
@@ -97,6 +98,7 @@ export default class RAND36StateWrapper implements RAND36State {
    * Set patient name
    */
   set name(value: string) {
+    koi8encode(value); // will throw if invalid
     this._state.profile.name = value;
   }
 

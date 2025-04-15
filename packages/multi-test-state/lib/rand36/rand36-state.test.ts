@@ -96,6 +96,11 @@ describe('RAND36State', () => {
     expect(decoded.getAnswer(20)).toBe(1);
   });
 
+  it('should throw if name is invalid', () => {
+    const stateManager = new RAND36State();
+    expect(() => { stateManager.name = 'לאה גולדברג' }).toThrow('Encountered non-KOI8-U character');
+  });
+
   it('should validate birth date format', () => {
     const stateManager = new RAND36State();
 

@@ -66,7 +66,7 @@ describe(rand36.name, () => {
     // VT (items 23,27,29,31): 80,80,20,20 = 50
     // MH (items 24,25,26,28,30): 20,20,80,20,80 = 44
     // SF (items 20,32): 75,25 = 50
-    // BP (items 21,22): 80,75 = 77.5
+    // BP (items 21,22): 80,75 = 77.5 -> 78
     // GH (items 1,33,34,35,36): 75,25,75,25,75 = 55
     
     expect(result.PF).toEqual(50);
@@ -75,7 +75,7 @@ describe(rand36.name, () => {
     expect(result.VT).toEqual(50);
     expect(result.MH).toEqual(44);
     expect(result.SF).toEqual(50);
-    expect(result.BP).toEqual(77.5);
+    expect(result.BP).toEqual(78);
     expect(result.GH).toEqual(55);
   });
 }); 
