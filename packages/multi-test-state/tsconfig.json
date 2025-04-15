@@ -1,19 +1,16 @@
 {
   "compileOnSave": true,
   "compilerOptions": {
-    "target": "esnext",
-    "module": "esnext",
-    "moduleResolution": "node",
-    "lib": ["es6"],
-    "jsx": "react",
-    "outDir": "dist",
-    "strict": true,
+    "target": "es2015",
+    "module": "node16",
+    "moduleResolution": "node16",
     "noUnusedLocals": true,
     "noUnusedParameters": true,
-    "noImplicitReturns": true,
-    "noFallthroughCasesInSwitch": true,
-    "moduleResolution": "node",
-    "esModuleInterop": true,
-    "sourceMap": true
+    "outDir": "dist",
+    "lib": ["es2015"],
+    "noImplicitAny": false,
+    "importHelpers": true,
+    "sourceMap": true,
+    "declaration": true
   }
 }

@@ -1,6 +1,6 @@
-import {SF36State} from "./type";
+import {RAND36State} from "./type";
 
-export default function createBlankSF36State(): SF36State {
+export default function createBlankRAND36State(): RAND36State {
     return {
         answers: new Array(36).fill(0),
         profile: {

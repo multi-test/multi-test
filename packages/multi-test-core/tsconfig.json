@@ -10,6 +10,7 @@
     "lib": ["es6"],
     "noImplicitAny": false,
     "importHelpers": true,
-    "sourceMap": true
+    "sourceMap": true,
+    "declaration": true
   }
 }

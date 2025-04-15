@@ -13,13 +13,8 @@ export default class CattellStateWrapper implements CattellState {
      * @returns A new CattellStateWrapper instance
      */
     public static fromBase64(base64: string): CattellStateWrapper {
-        try {
-            const state = decodeState(base64);
-            return new CattellStateWrapper(state);
-        } catch (error) {
-            console.error('Error decoding Cattell state:', error);
-            return new CattellStateWrapper();
-        }
+        const state = decodeState(base64);
+        return new CattellStateWrapper(state);
     }
 
     /**

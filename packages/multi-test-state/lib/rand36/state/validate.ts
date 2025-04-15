@@ -1,4 +1,4 @@
-import {SF36State} from "./type";
+import {RAND36State} from "./type";
 
 const VALID_ANSWERS = new Set<unknown>([0, 1, 2, 3, 4, 5, 6]);
 
@@ -16,7 +16,7 @@ function containsOnlyValidAnswers(answers: unknown[]): boolean {
     return true;
 }
 
-export function validate(state: SF36State): { isValid: boolean; errors: string[] } {
+export function validate(state: RAND36State): { isValid: boolean; errors: string[] } {
     const errors: string[] = [];
 
     if (!state) {

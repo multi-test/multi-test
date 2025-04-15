@@ -16,7 +16,16 @@
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "scripts": {
+    "build": "tsc",
     "test": "jest"
+  },
+  "exports": {
+    "./package.json": "./package.json",
+    "./rand36": {
+      "types": "./dist/rand36/index.d.ts",
+      "require": "./dist/rand36/index.js",
+      "default": "./dist/rand36/index.js"
+    }
   },
   "dependencies": {
     "bit-buffer": "^0.2.5"

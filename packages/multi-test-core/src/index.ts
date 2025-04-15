@@ -7,6 +7,6 @@ export { default as factor5 } from "./factor5/factor5";
 export { default as maddi } from "./maddi/maddi";
 export { default as mendel } from "./mendel/mendel";
 export { default as mmpi } from "./mmpi/mmpi";
-export { default as sf36 } from "./sf36/sf36";
+export { default as rand36, RAND36Scales } from "./rand36";
 export { default as spa } from "./spa/spa";
 export { default as usk } from "./usk/usk";

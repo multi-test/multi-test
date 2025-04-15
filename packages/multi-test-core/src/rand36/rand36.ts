@@ -1,5 +1,15 @@
+/**
+ * Implementation of the RAND 36-Item Health Survey (SF-36) scoring algorithm.
+ * This module provides functions to calculate scale scores from raw survey responses.
+ * 
+ * The survey measures eight health concepts: physical functioning, role limitations
+ * due to physical health problems, bodily pain, general health, vitality, social functioning,
+ * role limitations due to emotional problems, and mental health.
+ *
+ * @see {@link https://www.rand.org/health-care/surveys_tools/mos/36-item-short-form/scoring.html} for official documentation
+ */
 import combineReducers from "../util/combineReducers";
-import {createBlankScales, ISF36Scales} from "./scales";
+import {createBlankScales, IRAND36Scales} from "./scales";
 
 // Merged data structure for item groups, their indices, and recoding rules
 const itemGroups = [
@@ -51,6 +61,21 @@ const scaleItems = {
     "GH": [1, 33, 34, 35, 36]
 };
 
+/**
+ * Normative data from the Medical Outcomes Study (N=2471)
+ * "scale": [items, alpha, mean, sd]
+ */
+const stats = {
+  "PF": [10, 0.93, 70.61, 27.42],
+  "RP": [4, 0.84, 52.97, 40.78],
+  "RE": [3, 0.83, 65.78, 40.71],
+  "VT": [4, 0.86, 52.15, 22.39],
+  "MH": [5, 0.90, 70.38, 21.97],
+  "SF": [2, 0.85, 78.77, 25.43],
+  "BP": [2, 0.78, 70.77, 25.46],
+  "GH": [5, 0.78, 56.99, 21.11],
+};
+
 // Generate recoding reducers using the itemRecodeMap
 const recodedValuesReducer = combineReducers<Record<number, number>>(
     // Create a reducer for each item in the recoding map
@@ -70,7 +95,7 @@ const recodedValuesReducer = combineReducers<Record<number, number>>(
 );
 
 // Calculate scale averages based on recoded values
-const calculateScales = (recodedValues: Record<number, number>): ISF36Scales => {
+const calculateScales = (recodedValues: Record<number, number>): IRAND36Scales => {
     const scales = createBlankScales(0);
     
     // Calculate average for each scale based on its items
@@ -88,14 +113,14 @@ const calculateScales = (recodedValues: Record<number, number>): ISF36Scales => 
         
         // Set scale value to the average (0-100 range)
         // Only calculate average when we have at least one valid value
-        scales[scale as keyof ISF36Scales] = count > 0 ? sum / count : NaN;
+        scales[scale as keyof IRAND36Scales] = count > 0 ? sum / count : NaN;
     });
     
     return scales;
 };
 
 // Calculate recoded values and scale scores
-const calculate = (answers: any[]): ISF36Scales => {
+const calculate = (answers: any[]): IRAND36Scales => {
     // First create an object to hold recoded values
     const recodedValues = answers.reduce(recodedValuesReducer, {});
     
@@ -104,7 +129,7 @@ const calculate = (answers: any[]): ISF36Scales => {
 };
 
 // Validate that answers are correct length and contain valid values for each item
-const validateAnswers = (answers: any[]): ISF36Scales | undefined => {
+const validateAnswers = (answers: any[]): IRAND36Scales | undefined => {
     // Check if answers exists and has the correct length
     if (!answers || answers.length !== 36) {
         return createBlankScales(NaN);
@@ -136,6 +161,63 @@ const validateAnswers = (answers: any[]): ISF36Scales | undefined => {
     return undefined;
 };
 
-export default function sf36(answers: any[]): ISF36Scales {
+/**
+ * Convert a raw scale score to a Z-score using the Medical Outcomes Study norms
+ * Z-score = (raw score - population mean) / population standard deviation
+ */
+function zScore([scale, value]: [string, number]): [string, number] {
+  if (isNaN(value) || !stats[scale]) {
+    return [scale, NaN];
+  }
+  const mean = stats[scale][2];
+  const sd = stats[scale][3];
+  return [scale, (value - mean) / sd];
+}
+
+/**
+ * Convert a raw scale score to a T-score using the Medical Outcomes Study norms
+ * T-score = 50 + (10 * Z-score)
+ */
+function tScore([scale, value]: [string, number]): [string, number] {
+  if (isNaN(value) || !stats[scale]) {
+    return [scale, NaN];
+  }
+  const mean = stats[scale][2];
+  const sd = stats[scale][3];
+  const z = (value - mean) / sd;
+  return [scale, 50 + (10 * z)];
+}
+
+/**
+ * Calculate the RAND 36-Item Health Survey (SF-36) scale scores from raw survey responses.
+ * 
+ * @param answers - An array of survey responses (1-5 scale)
+ * @returns An object containing the calculated scale scores
+ */
+export function rand36(answers: any[]): IRAND36Scales {
     return validateAnswers(answers) || calculate(answers);
 } 
+
+/**
+ * Calculate the Z-scores for the RAND 36-Item Health Survey (SF-36) scale scores.
+ *
+ * @param scales - An object containing the calculated raw scale scores
+ * @returns An object containing the calculated Z-scores
+ */
+export function rand36ZScores(scales: IRAND36Scales): IRAND36Scales {
+    return Object.fromEntries(
+        Object.entries(scales).map(zScore),
+    ) as unknown as IRAND36Scales;
+}
+
+/**
+ * Calculate the T-scores for the RAND 36-Item Health Survey (SF-36) scale scores.
+ *
+ * @param scales - An object containing the calculated raw scale scores
+ * @returns An object containing the calculated T-scores
+ */
+export function rand36TScores(scales: IRAND36Scales): IRAND36Scales {
+    return Object.fromEntries(
+        Object.entries(scales).map(tScore),
+    ) as unknown as IRAND36Scales;
+}

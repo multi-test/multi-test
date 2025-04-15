@@ -16,19 +16,76 @@
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "exports": {
-    ".": "./dist/index.js",
-    "./adaptivity": "./dist/adaptivity/adaptivity.js",
-    "./alexithymia": "./dist/alexithymia/alexithymia.js",
-    "./amon": "./dist/amon/amon.js",
-    "./cattell": "./dist/cattell/cattell.js",
-    "./emin": "./dist/emin/emin.js",
-    "./factor5": "./dist/factor5/factor5.js",
-    "./lsi": "./dist/lsi/lsi.js",
-    "./maddi": "./dist/maddi/maddi.js",
-    "./mendel": "./dist/mendel/mendel.js",
-    "./mmpi": "./dist/mmpi/mmpi.js",
-    "./spa": "./dist/spa/spa.js",
-    "./usk": "./dist/usk/usk.js"
+    ".": {
+      "types": "./dist/index.d.ts",
+      "require": "./dist/index.js",
+      "default": "./dist/index.js"
+    },
+    "./adaptivity": {
+      "types": "./dist/adaptivity/adaptivity.d.ts",
+      "require": "./dist/adaptivity/adaptivity.js",
+      "default": "./dist/adaptivity/adaptivity.js"
+    },
+    "./alexithymia": {
+      "types": "./dist/alexithymia/alexithymia.d.ts",
+      "require": "./dist/alexithymia/alexithymia.js",
+      "default": "./dist/alexithymia/alexithymia.js"
+    },
+    "./amon": {
+      "types": "./dist/amon/amon.d.ts",
+      "require": "./dist/amon/amon.js",
+      "default": "./dist/amon/amon.js"
+    },
+    "./cattell": {
+      "types": "./dist/cattell/cattell.d.ts",
+      "require": "./dist/cattell/cattell.js",
+      "default": "./dist/cattell/cattell.js"
+    },
+    "./emin": {
+      "types": "./dist/emin/emin.d.ts",
+      "require": "./dist/emin/emin.js",
+      "default": "./dist/emin/emin.js"
+    },
+    "./factor5": {
+      "types": "./dist/factor5/factor5.d.ts",
+      "require": "./dist/factor5/factor5.js",
+      "default": "./dist/factor5/factor5.js"
+    },
+    "./lsi": {
+      "types": "./dist/lsi/lsi.d.ts",
+      "require": "./dist/lsi/lsi.js",
+      "default": "./dist/lsi/lsi.js"
+    },
+    "./maddi": {
+      "types": "./dist/maddi/maddi.d.ts",
+      "require": "./dist/maddi/maddi.js",
+      "default": "./dist/maddi/maddi.js"
+    },
+    "./mendel": {
+      "types": "./dist/mendel/mendel.d.ts",
+      "require": "./dist/mendel/mendel.js",
+      "default": "./dist/mendel/mendel.js"
+    },
+    "./mmpi": {
+      "types": "./dist/mmpi/mmpi.d.ts",
+      "require": "./dist/mmpi/mmpi.js",
+      "default": "./dist/mmpi/mmpi.js"
+    },
+    "./rand36": {
+      "types": "./dist/rand36/rand36.d.ts",
+      "require": "./dist/rand36/rand36.js",
+      "default": "./dist/rand36/rand36.js"
+    },
+    "./spa": {
+      "types": "./dist/spa/spa.d.ts",
+      "require": "./dist/spa/spa.js",
+      "default": "./dist/spa/spa.js"
+    },
+    "./usk": {
+      "types": "./dist/usk/usk.d.ts",
+      "require": "./dist/usk/usk.js",
+      "default": "./dist/usk/usk.js"
+    }
   },
   "files": [
     "dist",
@@ -38,6 +95,7 @@
   ],
   "scripts": {
     "prepare": ":",
+    "build": "tsc",
     "lint": ":",
     "test": "jest"
   },

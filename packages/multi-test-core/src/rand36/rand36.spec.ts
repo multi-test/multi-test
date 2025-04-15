@@ -1,7 +1,7 @@
-import sf36 from "./sf36";
+import {rand36, rand36TScores, rand36ZScores} from "./rand36";
 import {createBlankScales} from "./scales";
 
-describe(sf36.name, () => {
+describe(rand36.name, () => {
   // Test for invalid inputs
   test.each([
     ['undefined', [NaN], createBlankScales(NaN)],
@@ -10,13 +10,13 @@ describe(sf36.name, () => {
     ['array of wrong size', Array(20).fill(1), createBlankScales(NaN)],
     ['array with invalid values', Array(36).fill(10), createBlankScales(NaN)]
   ])('when given %s', (_, value, expected) => {
-    expect(sf36(value)).toEqual(expected);
+    expect(rand36(value)).toEqual(expected);
   });
   
   // Test for all 1 answers
   test('when all answers are 1', () => {
     const answers = Array(36).fill(1);
-    const result = sf36(answers);
+    const result = rand36(answers);
     
     // When all answers are 1, expect:
     // - Group1 items (1,2,20,22,34,36) = 100
@@ -49,7 +49,7 @@ describe(sf36.name, () => {
   // Test for all 2 answers
   test('when all answers are 2', () => {
     const answers = Array(36).fill(2);
-    const result = sf36(answers);
+    const result = rand36(answers);
     
     // When all answers are 2, expect:
     // - Group1 items (1,2,20,22,34,36) = 75
@@ -79,3 +79,31 @@ describe(sf36.name, () => {
     expect(result.GH).toEqual(55);
   });
 }); 
+
+describe(rand36TScores.name, () => {
+  test('when all scales are 0', () => {
+    expect(rand36TScores(createBlankScales(0))).toMatchSnapshot();
+  });
+
+  test('when all scales are 50', () => {
+    expect(rand36TScores(createBlankScales(50))).toMatchSnapshot();
+  });
+
+  test('when all scales are 100', () => {
+    expect(rand36TScores(createBlankScales(100))).toMatchSnapshot();
+  });
+});
+
+describe(rand36ZScores.name, () => {
+  test('when all scales are 0', () => {
+    expect(rand36ZScores(createBlankScales(0))).toMatchSnapshot();
+  });
+
+  test('when all scales are 50', () => {
+    expect(rand36ZScores(createBlankScales(50))).toMatchSnapshot();
+  });
+
+  test('when all scales are 100', () => {
+    expect(rand36ZScores(createBlankScales(100))).toMatchSnapshot();
+  });
+});

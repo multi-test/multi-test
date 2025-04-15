@@ -1,25 +1,21 @@
-import createBlankSF36State from "./state/blank";
+import {compactToDate, dateToCompact} from "../utils/date-utils";
+import createBlankRAND36State from "./state/blank";
 import {decodeState} from "./state/decode";
 import {encodeState} from "./state/encode";
 import {validate} from "./state/validate";
-import {Blank, SF36Answer, SF36State} from "./state/type";
+import {Blank, RAND36Answer, RAND36State} from "./state/type";
 
-export default class SF36StateWrapper implements SF36State {
-  constructor(private readonly _state = createBlankSF36State()) {}
+export default class RAND36StateWrapper implements RAND36State {
+  constructor(private readonly _state = createBlankRAND36State()) {}
 
   /**
-   * Create a new SF36StateManager from a base64 string
+   * Create a new RAND36StateManager from a base64 string
    * @param base64 The base64 encoded state string
-   * @returns A new SF36StateManager instance
+   * @returns A new RAND36StateManager instance
    */
-  public static fromBase64(base64: string): SF36StateWrapper {
-    try {
-      const state = decodeState(base64);
-      return new SF36StateWrapper(state);
-    } catch (error) {
-      console.error('Error decoding SF36 state:', error);
-      return new SF36StateWrapper();
-    }
+  public static fromBase64(base64: string): RAND36StateWrapper {
+    const state = decodeState(base64);
+    return new RAND36StateWrapper(state);
   }
 
   /**
@@ -27,7 +23,7 @@ export default class SF36StateWrapper implements SF36State {
    * @returns A string representation of the state (name|birth date|comma-separated answers)
    */
   public toString(): string {
-    return `${this.profile.name}|${this.profile.birthDate}|${this.answers.join('')}`;
+    return `${this.name}|${this.birthDate}|${this.answers.join('')}`;
   }
 
   /**
@@ -43,14 +39,14 @@ export default class SF36StateWrapper implements SF36State {
   /**
    * Get answers array
    */
-  get answers(): Blank<SF36Answer>[] {
+  get answers(): Blank<RAND36Answer>[] {
     return [...this._state.answers];
   }
 
   /**
    * Set answers array
    */
-  set answers(answers: Blank<SF36Answer>[]) {
+  set answers(answers: Blank<RAND36Answer>[]) {
     this._state.answers = [...answers];
   }
 
@@ -59,7 +55,7 @@ export default class SF36StateWrapper implements SF36State {
    * @param questionNumber The question number (1-36)
    * @param answer The answer value (1-6 or blank)
    */
-  public setAnswer(questionNumber: number, answer: Blank<SF36Answer>): void {
+  public setAnswer(questionNumber: number, answer: Blank<RAND36Answer>): void {
     if (questionNumber < 1 || questionNumber > 36) {
       throw new Error(`Question number must be between 1 and 36, got ${questionNumber}`);
     }
@@ -73,7 +69,7 @@ export default class SF36StateWrapper implements SF36State {
    * @param questionNumber The question number (1-36)
    * @returns The answer value (1-6 or blank)
    */
-  public getAnswer(questionNumber: number): Blank<SF36Answer> {
+  public getAnswer(questionNumber: number): Blank<RAND36Answer> {
     if (questionNumber < 1 || questionNumber > 36) {
       throw new Error(`Question number must be between 1 and 36, got ${questionNumber}`);
     }
@@ -86,7 +82,7 @@ export default class SF36StateWrapper implements SF36State {
   /**
    * Get profile object
    */
-  get profile(): SF36State['profile'] {
+  get profile(): RAND36State['profile'] {
     return { ...this._state.profile };
   }
 
@@ -105,17 +101,17 @@ export default class SF36StateWrapper implements SF36State {
   }
 
   /**
-   * Get birth date as a Date object
+   * Get birth date as yyyy-mm-dd string
    */
-  get birthDate(): Date {
-    return new Date(this._state.profile.birthDate);
+  get birthDate(): string {
+    return compactToDate(this._state.profile.birthDate);
   }
 
   /**
-   * Set birthdate using a Date object
+   * Set birthdate using a yyyy-mm-dd string
    */
-  set birthDate(date: Date | number) {
-    this._state.profile.birthDate = date instanceof Date ? date.getTime() : date;
+  set birthDate(value: string) {
+    this._state.profile.birthDate = dateToCompact(value);
   }
 
   // --- Validation methods ---
